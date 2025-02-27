@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Font family */
+    --ff: "DM Sans", serif;
+  }
+
+  a,
+  img,
+  button {
+    @apply block;
+  }
+
+  input {
+    @apply block w-full bg-transparent outline-none;
+  }
+
+  input[type="password"] {
+    @apply tracking-[5px];
+  }
+
+  input[type="password"]::placeholder {
+    @apply tracking-normal;
+  }
+
+  body {
+    @apply bg-light-background dark:bg-dark-background text-light-onBackground dark:text-dark-onBackground caret-light-primary dark:caret-dark-primary;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-light-primary dark:bg-dark-primary text-slate-100 dark:text-slate-900;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-transparent rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-light-onBackground/15 dark:bg-dark-onBackground/15;
+  }
+}
