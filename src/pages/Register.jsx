@@ -1,12 +1,14 @@
 // Component imports
 import PageTitle from "../components/PageTitle";
 import InputField from "../components/InputField";
+import { Button } from "../components/Button";
+import Copyright from "../components/Copyright";
 
 // Library import
 import { Form, Link } from "react-router-dom";
 
 // Asset imports
-import { logoLight, logoDark } from "../../public/assets/assets";
+import { logoLight, logoDark, banner } from "../../public/assets/assets";
 
 function Register() {
   return (
@@ -31,7 +33,7 @@ function Register() {
 
             <Form method="POST">
               <InputField
-                wrapperClassStr="border"
+                wrapperElemClassStr="border"
                 type="text"
                 idName="full-name-input"
                 labelText="Full name"
@@ -55,8 +57,23 @@ function Register() {
                 placeholderText="Enter your password"
                 required={true}
               />
+
+              <Button type="submit">Create account</Button>
             </Form>
+
+            <p>
+              Already have an account?
+              <Link to="/login">Sign in</Link>
+            </p>
           </section>
+
+          <Copyright />
+        </div>
+
+        <div>
+          <img src={banner} alt="" className="cover-img" />
+
+          <p>Chat with SynthVani to supercharge your ideas.</p>
         </div>
       </div>
     </>

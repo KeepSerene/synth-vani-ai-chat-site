@@ -1,5 +1,5 @@
 function InputField({
-  wrapperClassStr = "",
+  wrapperElemClassStr = "",
   idName = "",
   labelText = "Type here...",
   placeholderText = "Type here...",
@@ -8,7 +8,7 @@ function InputField({
   ...rest
 }) {
   return (
-    <div className={`input-field-wrapper ${wrapperClassStr}`}>
+    <div className={`input-field-wrapper ${wrapperElemClassStr}`}>
       <label htmlFor={idName} className="label-text">
         {labelText}
       </label>
