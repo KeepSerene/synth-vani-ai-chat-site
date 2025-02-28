@@ -10,14 +10,14 @@
     --ff: "DM Sans", serif;
   }
 
-  a,
-  img,
-  button {
-    @apply block;
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
   }
 
   input {
-    @apply block w-full bg-transparent outline-none;
+    @apply w-full bg-transparent focus-within:outline-none;
   }
 
   input[type="password"] {
@@ -48,5 +48,147 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-light-onBackground/15 dark:bg-dark-onBackground/15;
+  }
+}
+
+@layer components {
+  /* Input field styles */
+  .input-field-wrapper {
+    @apply relative;
+  }
+
+  .label-text {
+    @apply bg-light-background dark:bg-dark-background;
+    @apply text-labelLarge text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant capitalize px-2;
+    @apply absolute left-2 top-[18px];
+    @apply pointer-events-none select-none origin-[center_left];
+    @apply transition-[color,transform] duration-short4 ease-standard;
+  }
+
+  .input-field-wrapper:hover .label-text {
+    @apply text-light-onSurface dark:text-dark-onSurface;
+  }
+
+  .input-field-wrapper:focus-within .label-text,
+  .input-field-wrapper:has(.input-field:not(:placeholder-shown)) .label-text {
+    @apply translate-x-0.5 -translate-y-7 scale-[0.85];
+  }
+
+  .input-field-wrapper:focus-within .label-text {
+    @apply text-light-primary dark:text-dark-primary;
+  }
+
+  .input-field {
+    @apply h-14 bg-inherit text-light-onSurface dark:text-dark-onSurface rounded-extraSmall px-4;
+    @apply ring-1 ring-inset ring-light-outline dark:ring-dark-outline;
+    @apply transition-shadow duration-short3 ease-linear;
+    @apply hover:ring-light-onSurface hover:dark:ring-dark-onSurface;
+    @apply focus-within:ring-2 focus-within:ring-light-primary focus-within:dark:ring-dark-primary;
+  }
+
+  .input-field::placeholder {
+    @apply capitalize opacity-0 transition-opacity;
+  }
+
+  .input-field:focus-within::placeholder {
+    @apply opacity-100;
+  }
+
+  .input-field-wrapper .status-text {
+    @apply text-bodySmall text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant;
+    @apply px-4 pt-1;
+  }
+
+  /* Button styles */
+  .btn {
+    @apply h-10 text-labelLarge font-semibold capitalize rounded-full px-4;
+    @apply flex justify-center items-center;
+    @apply transition-shadow duration-short3 ease-standard;
+    @apply hover:shadow-elevation1 focus-visible:shadow-none;
+  }
+
+  .btn.primary.filled {
+    --state-layer-bg: theme("colors.light.onPrimary");
+
+    @apply bg-light-primary dark:bg-dark-primary text-light-onPrimary dark:text-dark-onPrimary;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .btn.primary.filled {
+      --state-layer-bg: theme("colors.dark.onPrimary");
+    }
+  }
+
+  .btn.filled:disabled {
+    @apply bg-light-onSurface/[0.12] dark:bg-dark-onSurface/[0.12] text-light-onSurface/[0.38] dark:text-dark-onSurface/[0.38];
+    @apply cursor-not-allowed;
+  }
+
+  /* State layer styles */
+  :has(> .state-layer) {
+    @apply overflow-hidden isolate relative;
+  }
+
+  .state-layer {
+    @apply bg-[--state-layer-bg] opacity-0 pointer-events-none select-none;
+    @apply absolute inset-0 -z-10;
+    @apply transition-opacity duration-short3 ease-standard;
+  }
+
+  :has(> .state-layer):hover > .state-layer {
+    @apply opacity-[0.08];
+  }
+
+  :has(> .state-layer):focus-visible > .state-layer {
+    @apply opacity-[0.1];
+  }
+
+  /* Link styles */
+  .link {
+    @apply transition-colors duration-short3 ease-standard;
+    @apply hover:text-light-primary hover:dark:text-dark-primary focus-visible:text-light-primary focus-visible:dark:text-dark-primary;
+    @apply hover:underline focus-visible:underline;
+  }
+
+  /* Loader styles */
+  .circular-loader {
+    @apply size-12 border-4 border-current dark:border-current border-r-transparent dark:border-r-transparent rounded-full animate-spin;
+  }
+
+  .circular-loader.small {
+    @apply size-5 border-[3px];
+  }
+
+  .linear-loader {
+    @apply h-1 bg-light-secondaryContainer dark:bg-dark-secondaryContainer rounded-full mx-1;
+    @apply overflow-hidden origin-top;
+  }
+
+  .linear-loader .active-indicator {
+    @apply h-[inherit] bg-light-primary dark:bg-dark-primary rounded-full;
+    @apply origin-right -translate-x-full;
+  }
+
+  /* Snackbar styles */
+  .snackbar {
+    @apply max-w-[60ch] min-w-[36ch] sm:w-max min-h-12;
+    @apply text-bodyLarge;
+    @apply bg-light-inverseSurface dark:bg-dark-inverseSurface text-light-inverseOnSurface dark:text-dark-inverseOnSurface;
+    @apply rounded-extraSmall px-4 py-[14px] shadow-elevation3 origin-bottom;
+    @apply fixed bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-auto z-40;
+  }
+
+  .snackbar.error {
+    @apply bg-light-errorContainer dark:bg-dark-errorContainer text-light-onErrorContainer dark:text-dark-onErrorContainer;
+  }
+}
+
+@layer utilities {
+  .img-wrapper {
+    @apply bg-light-surfaceContainerHighest dark:bg-dark-surfaceContainerHighest overflow-hidden;
+  }
+
+  .cover-img {
+    @apply w-full h-full object-cover;
   }
 }

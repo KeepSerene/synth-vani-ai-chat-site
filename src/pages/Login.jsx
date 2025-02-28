@@ -16,7 +16,7 @@ import { useSnackbarContext } from "../contexts/SnackbarContextProvider";
 import { logoLight, logoDark, banner } from "../assets/assets";
 import { useEffect } from "react";
 
-function Register() {
+function Login() {
   const navigation = useNavigation();
   const data = useActionData();
 
@@ -34,7 +34,7 @@ function Register() {
 
   return (
     <>
-      <PageTitle title="Create an account" />
+      <PageTitle title="Login" />
 
       <div className="w-screen h-dvh p-2 relative grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2">
         <div className="p-4 flex flex-col">
@@ -58,24 +58,14 @@ function Register() {
 
           <section className="max-w-[30rem] w-full mx-auto flex flex-col gap-2">
             <h2 className="text-displaySmall text-light-onBackground dark:text-dark-onBackground font-semibold text-center">
-              Create an Account
+              Welcome back to SynthVani!
             </h2>
 
             <p className="text-bodyLarge text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center px-2 mt-1 mb-5">
-              Where AI speaks your language, understands your vision.
+              Enter your account details.
             </p>
 
             <Form method="post" className="grid grid-cols-1 gap-4">
-              <InputField
-                type="text"
-                idName="full-name-input"
-                name="fullName"
-                labelText="Full name"
-                placeholderText="Full name"
-                required={true}
-                autoFocus={true}
-              />
-
               <InputField
                 type="email"
                 idName="email-input"
@@ -83,6 +73,7 @@ function Register() {
                 labelText="Email"
                 placeholderText="Email"
                 required={true}
+                autoFocus={true}
               />
 
               <InputField
@@ -94,6 +85,13 @@ function Register() {
                 required={true}
               />
 
+              <Link
+                to="/reset-link"
+                className="justify-self-end w-max text-labelLarge link"
+              >
+                Forgot password?
+              </Link>
+
               <Button
                 type="submit"
                 disabled={navigation.state === "submitting"}
@@ -101,18 +99,18 @@ function Register() {
                 {navigation.state === "submitting" ? (
                   <CircularLoader size="small" />
                 ) : (
-                  "Create account"
+                  "Sign in"
                 )}
               </Button>
             </Form>
 
             <p className="text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <Link
-                to="/login"
+                to="/register"
                 className="link text-labelLarge text-light-onSurface dark:text-dark-onSurface"
               >
-                Sign in
+                Register
               </Link>
             </p>
           </section>
@@ -138,4 +136,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;

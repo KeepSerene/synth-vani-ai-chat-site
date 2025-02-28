@@ -112,7 +112,7 @@ export default {
       },
       fontSize: {
         displayLarge: [
-          "57px",
+          "3.5625rem", // 57px
           {
             fontWeight: "400",
             lineHeight: "64px",
@@ -120,7 +120,7 @@ export default {
           },
         ],
         displayMedium: [
-          "45px",
+          "2.8125rem", // 45px
           {
             fontWeight: "400",
             lineHeight: "52px",
@@ -128,7 +128,7 @@ export default {
           },
         ],
         displaySmall: [
-          "36px",
+          "2.25rem", // 36px
           {
             fontWeight: "400",
             lineHeight: "44px",
@@ -136,7 +136,7 @@ export default {
           },
         ],
         headlineLarge: [
-          "32px",
+          "2rem", // 2rem
           {
             fontWeight: "400",
             lineHeight: "40px",
@@ -144,7 +144,7 @@ export default {
           },
         ],
         headlineMedium: [
-          "28px",
+          "1.75rem", // 28px
           {
             fontWeight: "400",
             lineHeight: "36px",
@@ -152,7 +152,7 @@ export default {
           },
         ],
         headlineSmall: [
-          "24px",
+          "1.5rem", // 24px
           {
             fontWeight: "400",
             lineHeight: "32px",
@@ -160,7 +160,7 @@ export default {
           },
         ],
         titleLarge: [
-          "22px",
+          "1.375rem", // 22px
           {
             fontWeight: "400",
             lineHeight: "28px",
@@ -168,7 +168,7 @@ export default {
           },
         ],
         titleMedium: [
-          "16px",
+          "1rem", // 16px
           {
             fontWeight: "500",
             lineHeight: "24px",
@@ -176,7 +176,7 @@ export default {
           },
         ],
         titleSmall: [
-          "14px",
+          "0.875rem", // 14px
           {
             fontWeight: "500",
             lineHeight: "20px",
@@ -184,7 +184,7 @@ export default {
           },
         ],
         bodyLarge: [
-          "16px",
+          "1rem", // 16px
           {
             fontWeight: "400",
             lineHeight: "24px",
@@ -192,7 +192,7 @@ export default {
           },
         ],
         bodyMedium: [
-          "14px",
+          "0.875rem", // 14px
           {
             fontWeight: "400",
             lineHeight: "20px",
@@ -200,7 +200,7 @@ export default {
           },
         ],
         bodySmall: [
-          "12px",
+          "0.75rem", // 12px
           {
             fontWeight: "400",
             lineHeight: "16px",
@@ -208,7 +208,7 @@ export default {
           },
         ],
         labelLarge: [
-          "14px",
+          "0.875rem", // 14px
           {
             fontWeight: "500",
             lineHeight: "20px",
@@ -216,7 +216,7 @@ export default {
           },
         ],
         labelMedium: [
-          "12px",
+          "0.75rem", // 12px
           {
             fontWeight: "500",
             lineHeight: "16px",
@@ -224,7 +224,7 @@ export default {
           },
         ],
         labelSmall: [
-          "11px",
+          "0.6875rem", // 11px
           {
             fontWeight: "500",
             lineHeight: "16px",

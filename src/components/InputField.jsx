@@ -3,7 +3,7 @@ function InputField({
   idName = "",
   labelText = "Type here...",
   placeholderText = "Type here...",
-  fieldClassStr,
+  fieldClassStr = "",
   statusText = "",
   ...rest
 }) {

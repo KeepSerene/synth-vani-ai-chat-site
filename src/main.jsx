@@ -4,6 +4,9 @@ import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
+// Context provider import
+import SnackbarContextProvider from "./contexts/SnackbarContextProvider.jsx";
+
 // Library imports
 import { RouterProvider } from "react-router-dom";
 
@@ -12,6 +15,8 @@ import router from "./router/routes.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <SnackbarContextProvider>
+      <RouterProvider router={router} />
+    </SnackbarContextProvider>
   </StrictMode>
 );
