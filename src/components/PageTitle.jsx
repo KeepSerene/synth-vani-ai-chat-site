@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 
-function PageTitle({ title = "SynthVani" }) {
+function PageTitle({ title = "SynthVani - Your Ideas, Divinely Amplified" }) {
   return (
     <Helmet>
       <title>{title}</title>

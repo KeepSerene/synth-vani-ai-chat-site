@@ -124,8 +124,36 @@
     @apply cursor-not-allowed;
   }
 
-  /* State layer styles */
-  :has(> .state-layer) {
+  .icon-btn {
+    --state-layer-bg: theme("colors.light.onSurfaceVariant");
+
+    @apply size-10 text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant rounded-full flex justify-center items-center;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon-btn {
+      --state-layer-bg: theme("colors.dark.onSurfaceVariant");
+    }
+  }
+
+  .icon-btn:disabled {
+    @apply text-light-onSurfaceVariant/[0.38] dark:text-dark-onSurfaceVariant/[0.38] cursor-not-allowed;
+  }
+
+  .icon-btn.small {
+    @apply size-7 min-w-7 min-h-7;
+  }
+
+  .icon-btn.small .icon {
+    @apply text-[18px];
+  }
+
+  .icon-btn.large {
+    @apply size-12 min-w-12 min-h-12;
+  }
+
+  /* Styles for buttons containing a state layer */
+  button:has(> .state-layer) {
     @apply overflow-hidden isolate relative;
   }
 
@@ -135,11 +163,11 @@
     @apply transition-opacity duration-short3 ease-standard;
   }
 
-  :has(> .state-layer):hover > .state-layer {
+  button:has(> .state-layer):hover > .state-layer {
     @apply opacity-[0.08];
   }
 
-  :has(> .state-layer):focus-visible > .state-layer {
+  button:has(> .state-layer):focus-visible > .state-layer {
     @apply opacity-[0.1];
   }
 
@@ -181,6 +209,39 @@
   .snackbar.error {
     @apply bg-light-errorContainer dark:bg-dark-errorContainer text-light-onErrorContainer dark:text-dark-onErrorContainer;
   }
+
+  /* Avatar styles */
+  .avatar {
+    @apply aspect-square bg-light-surfaceContainerHighest dark:bg-dark-surfaceContainerHighest min-w-[32px] max-w-[32px] rounded-full overflow-hidden;
+  }
+
+  /* Mobile menu styles */
+  .mobile-menu-wrapper {
+    @apply relative;
+  }
+
+  .mobile-menu {
+    @apply min-w-[112px] max-w-[280px] bg-light-surfaceContainer dark:bg-dark-surfaceContainer rounded-extraSmall py-2 shadow-elevation2;
+    @apply absolute top-[calc(100%+4px)] right-0 z-20;
+    @apply invisible opacity-0 scale-75 origin-top-right transition-[transform,visibility,opacity] duration-short4 ease-standard;
+  }
+
+  .mobile-menu.open {
+    @apply opacity-100 visible scale-100;
+  }
+
+  .menu-item {
+    --state-layer-bg: theme("colors.light.onSurface");
+
+    @apply w-full h-12 text-labelLarge text-light-onSurface dark:text-dark-onSurface px-3;
+    @apply flex items-center;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .menu-item {
+      --state-layer-bg: theme("colors.dark.onSurface");
+    }
+  }
 }
 
 @layer utilities {
@@ -190,5 +251,11 @@
 
   .cover-img {
     @apply w-full h-full object-cover;
+  }
+
+  .material-symbols-rounded {
+    font-variation-settings: "Fill" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+
+    @apply size-[1em] min-w-[1em] min-h-[1em] overflow-hidden;
   }
 }

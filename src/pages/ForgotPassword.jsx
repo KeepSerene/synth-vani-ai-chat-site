@@ -16,25 +16,25 @@ import { useSnackbarContext } from "../contexts/SnackbarContextProvider";
 import { logoLight, logoDark, banner } from "../assets/assets";
 import { useEffect } from "react";
 
-function Register() {
+function ForgotPassword() {
   const navigation = useNavigation();
   const data = useActionData();
 
   const { showSnackbar } = useSnackbarContext();
 
   useEffect(() => {
-    if (data?.message) {
+    if (data) {
       showSnackbar({
-        type: "error",
+        type: data.ok ? "info" : "error",
         message: data.message,
-        timeOut: 6000,
+        timeOut: 7000,
       });
     }
   }, [data, showSnackbar]);
 
   return (
     <>
-      <PageTitle title="Create an account" />
+      <PageTitle title="Forgot password" />
 
       <div className="w-screen h-dvh p-2 relative grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2">
         <div className="p-4 flex flex-col">
@@ -58,40 +58,23 @@ function Register() {
 
           <section className="max-w-[30rem] w-full mx-auto flex flex-col gap-2">
             <h2 className="text-displaySmall text-light-onBackground dark:text-dark-onBackground font-semibold text-center">
-              Create an Account
+              Forgot your password?
             </h2>
 
             <p className="text-bodyLarge text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center px-2 mt-1 mb-5">
-              Where AI speaks your language, understands your vision.
+              Enter your email to receive a one-hour password reset link.
             </p>
 
             <Form method="post" className="grid grid-cols-1 gap-4">
-              <InputField
-                type="text"
-                idName="full-name-input"
-                name="fullName"
-                labelText="Full name"
-                placeholderText="Full name"
-                required={true}
-                autoFocus={true}
-              />
-
               <InputField
                 type="email"
                 idName="email-input"
                 name="email"
                 labelText="Email"
                 placeholderText="Email"
+                statusText="Password reset email sent. Please check your inbox."
                 required={true}
-              />
-
-              <InputField
-                type="password"
-                idName="password-input"
-                name="password"
-                labelText="Password"
-                placeholderText="Password"
-                required={true}
+                autoFocus={true}
               />
 
               <Button
@@ -101,20 +84,10 @@ function Register() {
                 {navigation.state === "submitting" ? (
                   <CircularLoader size="small" />
                 ) : (
-                  "Create account"
+                  "Get reset email link"
                 )}
               </Button>
             </Form>
-
-            <p className="text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4">
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className="link text-labelLarge text-light-onSurface dark:text-dark-onSurface"
-              >
-                Sign in
-              </Link>
-            </p>
           </section>
 
           <Copyright />
@@ -138,4 +111,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default ForgotPassword;

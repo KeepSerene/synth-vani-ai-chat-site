@@ -1,7 +1,7 @@
 // Component imports
 import PageTitle from "../components/PageTitle";
 import InputField from "../components/InputField";
-import { Button } from "../components/Button";
+import { Button } from "../components/Buttons";
 import { CircularLoader, LinearLoader } from "../components/Loaders";
 import Copyright from "../components/Copyright";
 
@@ -81,19 +81,19 @@ function Login() {
                 idName="password-input"
                 name="password"
                 labelText="Password"
-                placeholderText="Enter your password"
+                placeholderText="Password"
                 required={true}
               />
 
               <Link
-                to="/reset-link"
+                to="/forgot-password"
                 className="justify-self-end w-max text-labelLarge link"
               >
                 Forgot password?
               </Link>
 
               <Button
-                type="submit"
+                btnType="submit"
                 disabled={navigation.state === "submitting"}
               >
                 {navigation.state === "submitting" ? (

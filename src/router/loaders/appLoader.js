@@ -4,17 +4,16 @@ import { account } from "../../lib/appwrite";
 // Library import
 import { redirect } from "react-router-dom";
 
-async function registrationLoader() {
+export default async function appLoader() {
+  const data = {};
+
   try {
-    await account.get();
+    data.user = await account.get();
   } catch (err) {
     console.error(`Failed to retrieve the user session info: ${err.message}`);
 
-    return null;
+    return redirect("/login");
   }
 
-  // After successful session retrieval, redirect the user to the home page
-  return redirect("/");
+  return data;
 }
-
-export default registrationLoader;

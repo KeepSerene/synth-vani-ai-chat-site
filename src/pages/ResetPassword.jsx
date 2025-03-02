@@ -16,7 +16,7 @@ import { useSnackbarContext } from "../contexts/SnackbarContextProvider";
 import { logoLight, logoDark, banner } from "../assets/assets";
 import { useEffect } from "react";
 
-function Register() {
+function ResetPassword() {
   const navigation = useNavigation();
   const data = useActionData();
 
@@ -34,7 +34,7 @@ function Register() {
 
   return (
     <>
-      <PageTitle title="Create an account" />
+      <PageTitle title="Reset password" />
 
       <div className="w-screen h-dvh p-2 relative grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2">
         <div className="p-4 flex flex-col">
@@ -58,40 +58,23 @@ function Register() {
 
           <section className="max-w-[30rem] w-full mx-auto flex flex-col gap-2">
             <h2 className="text-displaySmall text-light-onBackground dark:text-dark-onBackground font-semibold text-center">
-              Create an Account
+              Set a new password
             </h2>
 
             <p className="text-bodyLarge text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center px-2 mt-1 mb-5">
-              Where AI speaks your language, understands your vision.
+              Please choose a strong password that hasn't been used before. Must
+              be at least 8 characters long!
             </p>
 
             <Form method="post" className="grid grid-cols-1 gap-4">
               <InputField
-                type="text"
-                idName="full-name-input"
-                name="fullName"
-                labelText="Full name"
-                placeholderText="Full name"
-                required={true}
-                autoFocus={true}
-              />
-
-              <InputField
-                type="email"
-                idName="email-input"
-                name="email"
-                labelText="Email"
-                placeholderText="Email"
-                required={true}
-              />
-
-              <InputField
                 type="password"
                 idName="password-input"
                 name="password"
-                labelText="Password"
-                placeholderText="Password"
+                labelText="New password"
+                placeholderText="New password"
                 required={true}
+                autoFocus={true}
               />
 
               <Button
@@ -101,20 +84,10 @@ function Register() {
                 {navigation.state === "submitting" ? (
                   <CircularLoader size="small" />
                 ) : (
-                  "Create account"
+                  "Set password"
                 )}
               </Button>
             </Form>
-
-            <p className="text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4">
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className="link text-labelLarge text-light-onSurface dark:text-dark-onSurface"
-              >
-                Sign in
-              </Link>
-            </p>
           </section>
 
           <Copyright />
@@ -138,4 +111,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default ResetPassword;

@@ -61,7 +61,7 @@ async function registrationAction({ request }) {
     );
   } catch (err) {
     console.error(
-      `An error occurred while creating an email and password session: ${err}`
+      `An error occurred while creating an email and password session: ${err.message}`
     );
 
     return redirect("/login");

@@ -4,7 +4,7 @@ import { account } from "../../lib/appwrite";
 // Library import
 import { redirect } from "react-router-dom";
 
-async function registrationLoader() {
+async function loginLoader() {
   try {
     await account.get();
   } catch (err) {
@@ -17,4 +17,4 @@ async function registrationLoader() {
   return redirect("/");
 }
 
-export default registrationLoader;
+export default loginLoader;
