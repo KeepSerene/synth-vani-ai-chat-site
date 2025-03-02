@@ -1,17 +1,12 @@
 // Component imports
 import { IconButton } from "./Buttons";
 import Avatar from "./Avatar";
-import MobileMenu from "./MobileMenu";
+import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import { LinearLoader } from "./Loaders";
 
 // Library imports
-import {
-  Link,
-  useLoaderData,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
+import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 // Custom hook import
@@ -20,13 +15,11 @@ import { useToggle } from "../hooks/useToggle";
 // Context import
 import { useSnackbarContext } from "../contexts/SnackbarContextProvider";
 
-// Asset imports
-import { logoLight, logoDark } from "../assets/assets";
-
 // Utility import
 import logout from "../utils/logout";
+import Logo from "./Logo";
 
-function Topbar() {
+function Topbar({ toggleSidebar }) {
   const navigation = useNavigation();
 
   // Check if the page is loaded for the first time or being reloaded without submitting a form
@@ -46,31 +39,16 @@ function Topbar() {
       <div className="flex items-center gap-1">
         <IconButton
           icon="menu"
-          aria-label="Toggle sidebar"
-          title="Toggle sidebar"
+          onClick={toggleSidebar}
+          aria-label="Open sidebar"
+          title="Open sidebar"
           classStr="lg:hidden"
         />
 
-        <Link to="/" className="min-w-max max-w-max h-[24px] lg:hidden">
-          <img
-            src={logoLight}
-            alt="SynthVani logo"
-            width={133}
-            height={24}
-            className="dark:hidden"
-          />
-
-          <img
-            src={logoDark}
-            alt="SynthVani logo"
-            width={133}
-            height={24}
-            className="hidden dark:block"
-          />
-        </Link>
+        <Logo classStr="lg:hidden" />
       </div>
 
-      <div className="mobile-menu-wrapper">
+      <div className="menu-wrapper">
         <IconButton
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -79,12 +57,12 @@ function Topbar() {
           <Avatar name={user.name} />
         </IconButton>
 
-        <MobileMenu classStr={isMenuOpen ? "open" : ""}>
+        <Menu classStr={isMenuOpen ? "open" : ""}>
           <MenuItem
             onClick={() => logout(navigate, showSnackbar)}
             btnText="Log out"
           />
-        </MobileMenu>
+        </Menu>
       </div>
 
       <AnimatePresence>

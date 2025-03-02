@@ -1,3 +1,7 @@
+// Library imports
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 // Common button
 function Button({
   btnType = "button",
@@ -30,7 +34,11 @@ function IconButton({
   ...rest
 }) {
   return (
-    <button type={btnType} className={`icon-btn ${size} ${classStr}`} {...rest}>
+    <motion.button
+      type={btnType}
+      className={`icon-btn ${size} ${classStr}`}
+      {...rest}
+    >
       {children ? (
         children
       ) : (
@@ -38,8 +46,21 @@ function IconButton({
       )}
 
       <div className="state-layer" />
-    </button>
+    </motion.button>
   );
 }
 
-export { Button, IconButton };
+// Extended floating action button ( Extended FAB)
+function ExtendedFAB({ href = "", text = "", classStr = "", ...rest }) {
+  return (
+    <Link to={href} className={`extended-fab ${classStr}`} {...rest}>
+      <i className="material-symbols-rounded">add</i>
+
+      <span className="truncate">{text}</span>
+
+      <div className="state-layer" />
+    </Link>
+  );
+}
+
+export { Button, IconButton, ExtendedFAB };

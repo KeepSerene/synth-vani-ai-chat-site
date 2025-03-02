@@ -1,20 +1,23 @@
 // Component imports
 import PageTitle from "../components/PageTitle";
+import Logo from "../components/Logo";
 import InputField from "../components/InputField";
 import { Button } from "../components/Buttons";
 import { CircularLoader, LinearLoader } from "../components/Loaders";
 import Copyright from "../components/Copyright";
 
 // Library imports
-import { Form, Link, useActionData, useNavigation } from "react-router-dom";
+import { Form, useActionData, useNavigation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 // Context custom hook import
 import { useSnackbarContext } from "../contexts/SnackbarContextProvider";
 
-// Asset imports
-import { logoLight, logoDark, banner } from "../assets/assets";
+// React import
 import { useEffect } from "react";
+
+// Asset import
+import { banner } from "../assets/assets";
 
 function ResetPassword() {
   const navigation = useNavigation();
@@ -36,25 +39,9 @@ function ResetPassword() {
     <>
       <PageTitle title="Reset password" />
 
-      <div className="w-screen h-dvh p-2 relative grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2">
+      <main className="w-screen h-dvh p-2 relative grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2">
         <div className="p-4 flex flex-col">
-          <Link to="/" className="max-w-max mx-auto mb-auto lg:mx-0">
-            <img
-              src={logoLight}
-              width={133}
-              height={24}
-              alt="SynthVani logo"
-              className="dark:hidden"
-            />
-
-            <img
-              src={logoDark}
-              width={133}
-              height={24}
-              alt="SynthVani logo"
-              className="hidden dark:block"
-            />
-          </Link>
+          <Logo classStr="mx-auto mb-auto lg:mx-0" />
 
           <section className="max-w-[30rem] w-full mx-auto flex flex-col gap-2">
             <h2 className="text-displaySmall text-light-onBackground dark:text-dark-onBackground font-semibold text-center">
@@ -100,7 +87,7 @@ function ResetPassword() {
             Chat with SynthVani - Where thoughts find their voice.
           </p>
         </div>
-      </div>
+      </main>
 
       <AnimatePresence>
         {navigation.state === "loading" && (

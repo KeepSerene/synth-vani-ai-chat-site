@@ -16,7 +16,23 @@ import { redirect } from "react-router-dom";
 async function registrationAction({ request }) {
   const formData = await request.formData();
 
-  if (formData.get("password").length < 8) {
+  const email = formData.get("email").trim();
+  const password = formData.get("password");
+  const fullName = formData.get("fullName").trim();
+
+  if (!email) {
+    return {
+      message: "Email is required!",
+    };
+  }
+
+  if (!fullName) {
+    return {
+      message: "Name is required!",
+    };
+  }
+
+  if (password.length < 8) {
     return {
       message: "Password must be at least 8 characters long!",
     };
@@ -24,12 +40,7 @@ async function registrationAction({ request }) {
 
   // Handle registration
   try {
-    await account.create(
-      ID.unique(),
-      formData.get("email"),
-      formData.get("password"),
-      formData.get("fullName")
-    );
+    await account.create(ID.unique(), email, password, fullName);
   } catch (err) {
     // Handle AppWrite erros
     console.error("Account creation failed:", err);
@@ -55,10 +66,7 @@ async function registrationAction({ request }) {
 
   // After successful registration, handle login
   try {
-    await account.createEmailPasswordSession(
-      formData.get("email"),
-      formData.get("password")
-    );
+    await account.createEmailPasswordSession(email, password);
   } catch (err) {
     console.error(
       `An error occurred while creating an email and password session: ${err.message}`
