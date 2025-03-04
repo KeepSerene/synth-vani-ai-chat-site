@@ -22,12 +22,14 @@ import registrationAction from "./actions/registrationAction";
 import loginAction from "./actions/loginAction";
 import forgotPasswordAction from "./actions/forgotPasswordAction";
 import resetPasswordAction from "./actions/resetPasswordAction";
+import appAction from "./actions/appAction";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     loader: appLoader,
+    action: appAction,
   },
   {
     path: "/register",

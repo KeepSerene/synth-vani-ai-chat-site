@@ -29,7 +29,9 @@
   }
 
   body {
-    @apply bg-light-background dark:bg-dark-background text-light-onBackground dark:text-dark-onBackground caret-light-primary dark:caret-dark-primary;
+    -webkit-font-smoothing: antialiased;
+
+    @apply bg-light-background dark:bg-dark-background text-light-onBackground dark:text-dark-onBackground font-dmSans caret-light-primary dark:caret-dark-primary;
   }
 
   /* Selection styles */

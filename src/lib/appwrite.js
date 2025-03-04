@@ -1,4 +1,4 @@
-import { Account, Avatars, Client } from "appwrite";
+import { Account, Avatars, Client, Databases } from "appwrite";
 
 // Initialize the SDK
 const client = new Client();
@@ -10,4 +10,6 @@ const account = new Account(client);
 
 const avatars = new Avatars(client);
 
-export { account, avatars };
+const databases = new Databases(client);
+
+export { account, avatars, databases };

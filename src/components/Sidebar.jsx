@@ -1,7 +1,6 @@
 // Component imports
 import Logo from "./Logo";
 import { ExtendedFAB, IconButton } from "./Buttons";
-import Copyright from "./Copyright";
 
 // Library import
 import { NavLink } from "react-router-dom";
@@ -58,16 +57,20 @@ function Sidebar({ isSidebarOpen, toggleSidebar }) {
             </nav>
           </div>
 
+          {/* Copyright */}
           <p className="h-14 text-labelLarge text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant capitalize border-t border-light-surfaceContainerHigh dark:border-dark-surfaceContainerHigh px-4 mt-4 flex items-center">
-            &copy;{" "}
-            <a
-              href="https://github.com/KeepSerene"
-              target="_blank"
-              className="link text-light-onSurface dark:text-dark-onSurface"
-            >
-              KeepSerene
-            </a>
-            ,&nbsp;<span>{getCopyrightYear()}</span>. All rights reserved.
+            {/* The outer span is necessary for cohesive paragraph wrapping. if necessary. Note the p-tag is a flex parent */}
+            <span>
+              &copy;&nbsp;
+              <a
+                href="https://github.com/KeepSerene"
+                target="_blank"
+                className="link text-light-onSurface dark:text-dark-onSurface"
+              >
+                KeepSerene
+              </a>
+              ,&nbsp;<span>{getCopyrightYear()}</span>. All rights reserved.
+            </span>
           </p>
         </div>
       </motion.aside>
