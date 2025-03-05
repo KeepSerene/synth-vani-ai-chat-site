@@ -67,7 +67,7 @@ function Topbar({ toggleSidebar }) {
 
       <AnimatePresence>
         {isNormalPageLoad && (
-          <LinearLoader classStr="absolute left-0 top-0 right-0" />
+          <LinearLoader classStr="absolute left-0 top-full right-0" />
         )}
       </AnimatePresence>
     </header>

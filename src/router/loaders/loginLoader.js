@@ -8,7 +8,7 @@ async function loginLoader() {
   try {
     await account.get();
   } catch (err) {
-    console.error(`Failed to retrieve the user session info: ${err.message}`);
+    console.error(`Error: Failed to retrieve user details - ${err.message}`);
 
     return null;
   }

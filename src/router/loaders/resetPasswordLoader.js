@@ -12,7 +12,7 @@ async function resetPasswordLoader({ request }) {
 
     return redirect("/");
   } catch (err) {
-    console.error(`Failed to retrieve the user session info: ${err.message}`);
+    console.error(`Error: Failed to retrieve user details - ${err.message}`);
   }
 
   if (!(url.searchParams.get("userId") || url.searchParams.get("secret"))) {

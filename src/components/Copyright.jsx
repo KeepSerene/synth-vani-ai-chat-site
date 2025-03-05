@@ -1,4 +1,4 @@
-import { getCopyrightYear } from "../utils/helpers";
+import { getCurrentYear } from "../utils/helpers";
 
 function Copyright() {
   return (
@@ -11,7 +11,7 @@ function Copyright() {
       >
         KeepSerene
       </a>
-      , <span>{getCopyrightYear()}</span>. All rights reserved.
+      , <span>{getCurrentYear()}</span>. All rights reserved.
     </p>
   );
 }

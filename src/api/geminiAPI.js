@@ -1,4 +1,4 @@
-import model from "../lib/googleGenAI";
+import model from "../lib/googleGenAIModel";
 
 /**
  * Generates a concise and relevant conversation title based on the provided user prompt.
@@ -11,7 +11,7 @@ import model from "../lib/googleGenAI";
  * @function getConversationTitle
  * @param {string} userPrompt - The user's input message that serves as the basis for title generation.
  * @returns {Promise<string>} A promise that resolves to a generated conversation title in plain text.
- *                            If an error occurs, it returns the default title: "New conversation".
+ *                            If an error occurs, it returns the default title: "Untitled".
  */
 async function getConversationTitle(userPrompt) {
   try {
@@ -25,7 +25,7 @@ async function getConversationTitle(userPrompt) {
   } catch (err) {
     console.error(`Failed to retrieve the conversation title: ${err.message}`);
 
-    return "New conversation";
+    return "Untitled";
   }
 }
 

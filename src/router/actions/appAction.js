@@ -4,26 +4,42 @@ import { account, databases } from "../../lib/appwrite";
 // Custom API function imports
 import { getConversationTitle, getGeminiResponse } from "../../api/geminiAPI";
 
-// Library import
+// Library imports
 import { ID } from "appwrite";
+import { redirect } from "react-router-dom";
 
 /**
- * Processes the user prompt by creating a conversation entry and storing both the user’s prompt
- * and the AI-generated response in the Appwrite database.
+ * Processes the user prompt by creating a conversation entry, storing both the user's prompt
+ * and the AI-generated response in the Appwrite database, and then redirecting to the conversation page.
+ *
+ * Steps:
+ * 1. Retrieves the logged-in user's details.
+ * 2. Generates a conversation title based on the user's prompt.
+ * 3. Creates a new conversation entry in the Appwrite database.
+ * 4. Fetches a response from the Gemini AI model based on the user's prompt.
+ * 5. Stores the user prompt and AI response in the database as a chat entry.
+ * 6. Redirects the user to the conversation page after successful creation.
  *
  * @async
  * @function userPromptAction
  * @param {FormData} formData - The form data containing the user's input prompt.
- * @returns {Promise<void>} - Resolves after storing the conversation and chat data.
+ * @returns {Promise<Response|void>} Resolves after storing the conversation and chat data,
+ *                                     and redirects the user to the conversation page.
  */
 async function userPromptAction(formData) {
-  // Extract and sanitize user input
   const userPrompt = await formData.get("user_prompt").trim();
 
   // Retrieve the logged-in user's details
-  const user = await account.get();
+  let user;
 
-  // Generate a conversation title using AI
+  try {
+    user = await account.get();
+  } catch (err) {
+    console.error(`Error: Failed to retrieve user details - ${err.message}`);
+
+    return;
+  }
+
   const conversationTitle = await getConversationTitle(userPrompt);
 
   let conversation;
@@ -45,7 +61,6 @@ async function userPromptAction(formData) {
     return;
   }
 
-  // Generate a response from the Gemini AI model
   const geminiResponse = await getGeminiResponse(userPrompt);
 
   // ====== Step 2: Store the user prompt and AI response as a chat entry ======
@@ -62,9 +77,11 @@ async function userPromptAction(formData) {
     );
   } catch (err) {
     console.error(`Error: Failed to store chat message - ${err.message}`);
+
+    return;
   }
 
-  return null;
+  return redirect(`/${conversation.$id}`);
 }
 
 /**

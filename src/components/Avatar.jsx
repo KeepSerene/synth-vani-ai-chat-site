@@ -1,6 +1,6 @@
 import { avatars } from "../lib/appwrite";
 
-function Avatar({ name }) {
+function Avatar({ name = "", title = "" }) {
   return (
     <figure className="avatar">
       <img
@@ -8,6 +8,7 @@ function Avatar({ name }) {
         alt={`${name} avatar`}
         width={48}
         height={48}
+        title={title}
       />
 
       <figcaption className="sr-only">

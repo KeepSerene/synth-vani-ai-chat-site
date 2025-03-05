@@ -8,10 +8,13 @@ import PromptField from "./components/PromptField";
 // Custom hook import
 import { useToggle } from "./hooks/useToggle";
 
-// Library import
+// Library imports
+import { Outlet, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function App() {
+  const params = useParams();
+
   const [isSidebarOpen, toggleSidebar] = useToggle();
 
   return (
@@ -27,7 +30,7 @@ function App() {
           {/* Main content */}
           <main className="px-5 pb-4 overflow-y-auto flex flex-col">
             <div className="grow w-full max-w-[52.5rem] mx-auto">
-              <Greetings />
+              {params.conversationId ? <Outlet /> : <Greetings />}
             </div>
           </main>
 

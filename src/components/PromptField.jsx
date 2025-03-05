@@ -1,6 +1,6 @@
 // Library imports
 import { useCallback, useRef, useState } from "react";
-import { useNavigation, useSubmit } from "react-router-dom";
+import { useNavigation, useParams, useSubmit } from "react-router-dom";
 import { motion } from "framer-motion";
 
 // Component import
@@ -16,6 +16,7 @@ function PromptField() {
 
   const navigation = useNavigation();
   const submit = useSubmit();
+  const { conversationId } = useParams();
 
   // Handle general prompts & update states
   const handlePrompt = useCallback(() => {
@@ -96,6 +97,7 @@ function PromptField() {
     [handlePrompt, placeCursorAtEnd]
   );
 
+  // Handle prompt submission
   const handleSubmit = useCallback(() => {
     // Prevent submission if the input is empty or a submission is already in progress
     if (!promptText || navigation.state === "submitting") return;
@@ -116,11 +118,11 @@ function PromptField() {
         {
           method: "POST", // HTTP method
           encType: "application/x-www-form-urlencoded", // Encoding type for a traditional form submission
-          action: "/", // Specifies which route action should handle this request
+          action: `/${conversationId}` || "", // Specifies which route action should handle this request
         }
       );
     }
-  }, [promptText, navigation.state, handlePrompt, submit]);
+  }, [promptText, navigation.state, handlePrompt, submit, conversationId]);
 
   // Framer motion variants setup
   const promptFieldParentVariant = {

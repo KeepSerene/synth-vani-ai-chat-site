@@ -108,7 +108,8 @@ export default {
         },
       },
       fontFamily: {
-        dmSans: "var(--ff)",
+        workSans: "var(--ff-sans)",
+        ibmPlexMono: "var(--ff-mono)",
       },
       fontSize: {
         displayLarge: [
