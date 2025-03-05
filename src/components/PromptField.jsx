@@ -118,7 +118,7 @@ function PromptField() {
         {
           method: "POST", // HTTP method
           encType: "application/x-www-form-urlencoded", // Encoding type for a traditional form submission
-          action: `/${conversationId}` || "", // Specifies which route action should handle this request
+          action: conversationId ? `/${conversationId}` : "/", // Specifies which route action should handle this request
         }
       );
     }
