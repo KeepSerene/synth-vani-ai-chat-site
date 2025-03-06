@@ -15,4 +15,4 @@ const toTitleCase = (str) => {
     .join(" ");
 };
 
-export { getCurrentYear, generateId, toTitleCase };
+export { getCurrentYear, toTitleCase };
