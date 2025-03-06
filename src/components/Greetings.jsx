@@ -2,7 +2,7 @@
 import { usePromptPreloader } from "../hooks/usePromptPreloader";
 
 // Component import
-import PromptPreloader from "./PromptPreLoader";
+import PromptPreloader from "./PromptPreloader";
 
 // Library imports
 import { useLoaderData } from "react-router-dom";

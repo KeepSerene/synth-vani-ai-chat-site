@@ -8,7 +8,7 @@ import PageTitle from "../components/PageTitle";
 // Component imports
 import UserPrompt from "../components/UserPrompt";
 import GeminiResponse from "../components/GeminiResponse";
-import PromptPreloader from "../components/PromptPreLoader";
+import PromptPreloader from "../components/PromptPreloader";
 
 // Custom hook import
 import { usePromptPreloader } from "../hooks/usePromptPreloader";
