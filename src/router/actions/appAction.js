@@ -85,6 +85,48 @@ async function userPromptAction(formData) {
 }
 
 /**
+ * Deletes a conversation document from the database based on the provided form data.
+ *
+ * If successful, the user is redirected to the root route (`/`) with a success message passed
+ * via URL search parameters. If an error occurs, the function returns an error message
+ * instead of redirecting.
+ *
+ * @async
+ * @function deleteConversationAction
+ * @param {FormData} formData - The form data containing the conversation ID and title.
+ * @returns {Promise<Object|Response>} Redirects on success, or returns an error object if deletion fails.
+ *
+ * @throws {Error} If the deletion process encounters an issue, an error message is returned.
+ */
+async function deleteConversationAction(formData) {
+  const conversationId = formData.get("conversation_id");
+  const conversationTitle = formData.get("conversation_title");
+
+  try {
+    await databases.deleteDocument(
+      import.meta.env.VITE_APPWRITE_DATABASE_ID,
+      import.meta.env.VITE_APPWRITE_CONVERSATIONS_COLLECTION_ID,
+      conversationId
+    );
+
+    // Redirect to the root route while passing success message as a query parameter
+    return redirect(
+      `/?success=${encodeURIComponent(
+        `The conversation "${conversationTitle}" has been successfully deleted.`
+      )}`
+    );
+  } catch (err) {
+    console.error(
+      `Error: Unable to delete conversation "${conversationTitle}": ${err.message}`
+    );
+
+    return {
+      errorMsg: `Failed to delete the conversation "${conversationTitle}": ${err.message}`,
+    };
+  }
+}
+
+/**
  * Handles incoming requests and delegates actions based on the `request_type` parameter.
  *
  * @async
@@ -97,7 +139,11 @@ export default async function appAction({ request }) {
   const requestType = formData.get("request_type");
 
   if (requestType === "user_prompt") {
-    return userPromptAction(formData);
+    return await userPromptAction(formData);
+  }
+
+  if (requestType === "delete_conversation") {
+    return await deleteConversationAction(formData);
   }
 
   return null;

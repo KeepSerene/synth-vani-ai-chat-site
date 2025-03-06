@@ -6,7 +6,13 @@ import MenuItem from "./MenuItem";
 import { LinearLoader } from "./Loaders";
 
 // Library imports
-import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
+import {
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+  useParams,
+  useSubmit,
+} from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 // Custom hook import
@@ -15,28 +21,34 @@ import { useToggle } from "../hooks/useToggle";
 // Context import
 import { useSnackbarContext } from "../contexts/SnackbarContextProvider";
 
-// Utility import
+// Utility imports
+import deleteConversation from "../utils/deleteConversation";
 import logout from "../utils/logout";
+
+// Component import
 import Logo from "./Logo";
 
 function Topbar({ toggleSidebar }) {
   const navigation = useNavigation();
-
-  // Check if the page is loaded for the first time or being reloaded without submitting a form
+  /*
+    Checks if the app is in a normal loading state (i.e., fetching data via a loader)  
+    without an ongoing form submission. This helps distinguish between page navigation/ 
+    initial visit/simple page reload (loader running), and form submissions (action running).  
+  */
   const isNormalPageLoad =
     !navigation.formData && navigation.state === "loading";
 
-  const { user } = useLoaderData();
-
+  const params = useParams();
+  const submit = useSubmit();
+  const { user, conversations } = useLoaderData();
   const [isMenuOpen, toggleMenu] = useToggle();
-
   const navigate = useNavigate();
-
   const { showSnackbar } = useSnackbarContext();
 
   return (
     <header className="h-16 px-4 flex justify-between items-center relative">
       <div className="flex items-center gap-1">
+        {/* Hamburger button */}
         <IconButton
           icon="menu"
           onClick={toggleSidebar}
@@ -48,6 +60,22 @@ function Topbar({ toggleSidebar }) {
         <Logo classStr="lg:hidden" />
       </div>
 
+      {params.conversationId && (
+        <IconButton
+          icon="delete"
+          onClick={() => {
+            const { title } = conversations.documents.find(
+              (doc) => doc.$id === params.conversationId
+            );
+            deleteConversation({ id: params.conversationId, title, submit });
+          }}
+          aria-label="Delete conversation"
+          title="Delete conversation"
+          classStr="lg:hidden ml-auto mr-1"
+        />
+      )}
+
+      {/* Logout menu */}
       <div className="menu-wrapper">
         <IconButton
           onClick={toggleMenu}

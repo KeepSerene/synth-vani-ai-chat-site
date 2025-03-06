@@ -132,14 +132,16 @@ function GeminiResponse({ response, children }) {
 
       {children}
 
-      <article className="markdown-content">
-        <Markdown
-          remarkPlugins={[remarkGfm]}
-          components={{ code: renderMarkdownCodeBlock }}
-        >
-          {response}
-        </Markdown>
-      </article>
+      {response && (
+        <article className="markdown-content">
+          <Markdown
+            remarkPlugins={[remarkGfm]}
+            components={{ code: renderMarkdownCodeBlock }}
+          >
+            {response}
+          </Markdown>
+        </article>
+      )}
     </div>
   );
 }

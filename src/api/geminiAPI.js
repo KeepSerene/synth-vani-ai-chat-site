@@ -42,9 +42,25 @@ async function getConversationTitle(userPrompt) {
  * @returns {Promise<string>} A promise that resolves to the AI-generated response or a fallback error message if the request fails.
  */
 async function getGeminiResponse(userPrompt, chatHistory = []) {
+  const history = [];
+
+  // Setup history: https://ai.google.dev/gemini-api/docs/text-generation?lang=node#chat
+  chatHistory.forEach(({ user_prompt, gemini_response }) => {
+    history.push(
+      {
+        role: "user",
+        parts: [{ text: user_prompt }],
+      },
+      {
+        role: "model",
+        parts: [{ text: gemini_response }],
+      }
+    );
+  });
+
   try {
     model.generationConfig = { temperature: 1.5 };
-    const chatSession = model.startChat({ history: chatHistory });
+    const chatSession = model.startChat({ history });
     const result = await chatSession.sendMessage(userPrompt);
 
     return result.response.text();

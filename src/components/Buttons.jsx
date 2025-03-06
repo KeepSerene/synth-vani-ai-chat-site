@@ -51,12 +51,25 @@ function IconButton({
 }
 
 // Extended floating action button ( Extended FAB)
-function ExtendedFAB({ href = "", text = "", classStr = "", ...rest }) {
+function ExtendedFAB({
+  href = "",
+  text = "",
+  classStr = "",
+  disabled = false,
+  ...rest
+}) {
   return (
-    <Link to={href} className={`extended-fab ${classStr}`} {...rest}>
+    <Link
+      to={href}
+      {...(disabled ? { role: "button" } : {})}
+      aria-disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
+      className={`extended-fab ${classStr}`}
+      {...rest}
+    >
       <i className="material-symbols-rounded">add</i>
 
-      <span className="truncate">{text}</span>
+      <span className={`truncate ${disabled ? "sr-only" : ""}`}>{text}</span>
 
       <div className="state-layer" />
     </Link>

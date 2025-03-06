@@ -3,16 +3,21 @@ import Logo from "./Logo";
 import { ExtendedFAB, IconButton } from "./Buttons";
 
 // Library imports
-import { NavLink, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData, useParams, useSubmit } from "react-router-dom";
 import { motion } from "framer-motion";
+
+// Utility import
+import deleteConversation from "../utils/deleteConversation";
 
 // Helper import
 import { getCurrentYear } from "../utils/helpers";
 
 function Sidebar({ isSidebarOpen, toggleSidebar }) {
+  const { conversationId } = useParams();
   const {
     conversations: { documents: chatSessions },
   } = useLoaderData() || [];
+  const submit = useSubmit();
 
   return (
     <>
@@ -27,9 +32,14 @@ function Sidebar({ isSidebarOpen, toggleSidebar }) {
             <Logo />
           </div>
 
-          <ExtendedFAB href="/" text="New chat" onClick={toggleSidebar} />
+          <ExtendedFAB
+            href="/"
+            text="New chat"
+            onClick={toggleSidebar}
+            disabled={!conversationId}
+          />
 
-          {/* Conversations */}
+          {/* Conversation list */}
           <div className="-pr-1 -mr-2 overflow-y-auto">
             <p className="h-9 text-titleSmall px-4 flex items-center">Recent</p>
 
@@ -57,7 +67,14 @@ function Sidebar({ isSidebarOpen, toggleSidebar }) {
                     <IconButton
                       icon="delete"
                       size="small"
-                      aria-label="Click to delete chat"
+                      onClick={() => {
+                        deleteConversation({
+                          id: chatSession.$id,
+                          title: chatSession.title,
+                          submit,
+                        });
+                      }}
+                      aria-label="Click to delete conversation"
                       title="Delete"
                       classStr="hidden lg:block opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 absolute top-1/2 -translate-y-1/2 right-1.5 z-10"
                     />

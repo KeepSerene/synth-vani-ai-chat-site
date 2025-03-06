@@ -10,6 +10,8 @@ import Login from "../pages/Login";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import Conversation from "../pages/Conversation";
+import Conversation404 from "../pages/Conversation404";
+import Error404 from "../pages/Error404";
 
 // Loader imports
 import appLoader from "./loaders/appLoader";
@@ -39,6 +41,7 @@ const router = createBrowserRouter([
         element: <Conversation />,
         loader: conversationLoader,
         action: conversationAction,
+        errorElement: <Conversation404 />,
       },
     ],
   },
@@ -65,6 +68,14 @@ const router = createBrowserRouter([
     element: <ResetPassword />,
     loader: resetPasswordLoader,
     action: resetPasswordAction,
+  },
+  {
+    path: "*",
+    /* 
+      "errorElement" inside a path only applies to loader/action errors for the route, 
+      so it doesn't work for unknown paths.
+    */
+    element: <Error404 />,
   },
 ]);
 

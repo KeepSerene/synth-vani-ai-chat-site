@@ -42,9 +42,7 @@ export default async function appLoader() {
       ]
     );
   } catch (err) {
-    console.error(
-      `Failed to retrieve the current user's conversations: ${err.message}`
-    );
+    console.error(`Error: Couldn't load conversations: ${err.message}`);
 
     return;
   }
