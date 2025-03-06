@@ -132,7 +132,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - GitHub: [@KeepSerene](https://github.com/KeepSerene)
 - LinkedIn: [Dhrubajyoti Bhattacharjee](https://www.linkedin.com/in/dhrubajyoti-bhattacharjee-320822318/)
-- Website: [your-website.com](https://math-to-dev.vercel.app/)
+- Website: [Portfolio](https://math-to-dev.vercel.app/)
 
 ## 🙏 Acknowledgements
 
