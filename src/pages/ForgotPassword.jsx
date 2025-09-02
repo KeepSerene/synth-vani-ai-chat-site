@@ -59,7 +59,11 @@ function ForgotPassword() {
                 name="email"
                 labelText="Email"
                 placeholderText="Email"
-                statusText="Password reset email sent. Please check your inbox."
+                statusText={
+                  data?.ok
+                    ? "Password reset email sent. Please check your inbox."
+                    : ""
+                }
                 required={true}
                 autoFocus={true}
               />
